@@ -4,26 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Courses | Primetech Foundation</title>
-    <link rel="stylesheet" href="styles/courses.css">
-    <link rel="stylesheet" href="styles/patnership.css">
-    <link rel ="icon"type="image/png" href="Photos/logo New.png">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles/courses.css' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/patnership.css' %}">
+    <link rel ="icon"type="image/png" href="{% static 'core/Photos/logo New.png' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
    <header>
         <div class="container">
             <div class="logo">
-                <a href="#"><img src="Photos/logo New.png" alt="Primetech Foundation Logo"></a>
+                <a href="#"><img src="{% static 'core/Photos/logo New.png' %}" alt="Primetech Foundation Logo"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="Index.html">Home</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="courses.html"class="active">Explore Courses</a></li>
-                    <li><a href="patnership.html"> Partner with us</a></li>
-                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'courses' %}"class="active">Explore Courses</a></li>
+                    <li><a href="{% url 'patnership' %}"> Partner with us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact us</a></li>
                     <li class="nav-item2">
-                        <a class="btn-login" href="login.html">Login/Sign up</a>
+                        <a class="btn-login" href="{% url 'login' %}">Login/Sign up</a>
                     </li>
                 </ul>
                 <div class="mobile-menu-btn">
@@ -58,7 +59,7 @@
                 <!-- Course 1 -->
                 <div class="course-card" data-category="tech">
                     <div class="course-image">
-                        <img src="Photos/web.jpeg" alt="Web Development">
+                        <img src="{% static 'core/Photos/web.jpeg' %}" alt="Web Development">
                         <span class="category-badge">Technology</span>
                     </div>
                     <div class="course-info">
@@ -75,7 +76,7 @@
                 <!-- Course 2 -->
                 <div class="course-card" data-category="tech">
                     <div class="course-image">
-                        <img src="Photos/Data science image.jpeg" alt="Data Science">
+                        <img src="{% static 'core/Photos/Data science image.jpeg' %}" alt="Data Science">
                         <span class="category-badge">Technology</span>
                     </div>
                     <div class="course-info">
@@ -92,7 +93,7 @@
                 <!-- Course 3 -->
                 <div class="course-card" data-category="business">
                     <div class="course-image">
-                        <img src="Photos/dmarketing.jpeg" alt="Digital Marketing">
+                        <img src="{% static 'core/Photos/dmarketing.jpeg' %}" alt="Digital Marketing">
                         <span class="category-badge">Business</span>
                     </div>
                     <div class="course-info">
@@ -109,7 +110,7 @@
                 <!-- Course 4 -->
                 <div class="course-card" data-category="Technology">
                     <div class="course-image">
-                        <img src="Photos/python programming.jpeg" alt="Python Programming">
+                        <img src="{% static 'core/Photos/python programming.jpeg' %}" alt="Python Programming">
                         <span class="category-badge">Technology</span>
                     </div>
                     <div class="course-info">
@@ -126,7 +127,7 @@
                 <!-- Course 5 -->
                 <div class="course-card" data-category="creative">
                     <div class="course-image">
-                        <img src="Photos/Design 01.jpg" alt="Graphic Design">
+                        <img src="{% static 'core/Photos/Design 01.jpg' %}" alt="Graphic Design">
                         <span class="category-badge">Creative</span>
                     </div>
                     <div class="course-info">
@@ -143,7 +144,7 @@
                 <!-- Course 6 -->
                 <div class="course-card" data-category="tech">
                     <div class="course-image">
-                        <img src="Photos/Ai image.jpeg" alt="Artificial Intelligence">
+                        <img src="{% static 'core/Photos/Ai image.jpeg' %}" alt="Artificial Intelligence">
                         <span class="category-badge">Technology</span>
                     </div>
                     <div class="course-info">
@@ -277,7 +278,7 @@
                              empowering community for anyone seeking relevant digital expertise. </p>
                         </div>
                         <div class="testimonial-details">
-                           <img src="Photos/monicah.jpg" >
+                           <img src="{% static 'core/Photos/monicah.jpg' %}" >
                             <div>
                                 <h4>Monicah Mwangi</h4>
                                 <span>Blogging, Ai Student</span>
@@ -292,7 +293,7 @@
                                  I also had the opportunity to engage with like minded people and be exposed to a world full of possibilities.</p>    
                         </div>
                         <div class="testimonial-details">
-                           <img src="Photos/prudence.JPG" >
+                           <img src="{% static 'core/Photos/prudence.JPG' %}" >
                             <div>
                                 <h4>Prudence Kirimi</h4>
                                 <span>Data Science Student</span>
@@ -308,7 +309,7 @@
                                 It's an excellent <br>launchpad for creative futures.</p>
                         </div>
                         <div class="testimonial-details">
-                          <img src="Photos/Emmanuel.jpg" >
+                          <img src="{% static 'core/Photos/Emmanuel.jpg' %}" >
                             <div>
                                 <h4>Emmanuel Munga</h4>
                                 <span>Graphic Design Student</span>
@@ -322,7 +323,7 @@
                                 Their support and practical approach boosted <br>my confidence and skills effectively</p>
                         </div>
                         <div class="testimonial-details">
-                          <img src="Photos/Danplaceholder.png" >
+                          <img src="{% static 'core/Photos/Danplaceholder.png' %}" >
                             <div>
                                 <h4>Dan Kariuki</h4>
                                 <span>Web Dev Student</span>
@@ -356,10 +357,10 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="Index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="patnership.html">Partner With Us</a></li>
-                        <li><a href="login.html">Join US Today</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About</a></li>
+                        <li><a href="{% url 'patnership' %}">Partner With Us</a></li>
+                        <li><a href="{% url 'login' %}">Join US Today</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -410,8 +411,8 @@
         window.scrollTo({ top: 0, behavior: "smooth" });
       };
     </script>
-    <script src="scripts/courses.js"></script>
-    <script src="scripts/patnership.js"></script>
-    <script src="scripts/home.js"></script>
+    <script src="{% static 'core/scripts/courses.js' %}"></script>
+    <script src="{% static 'core/scripts/patnership.js' %}"></script>
+    <script src="{% static 'core/scripts/home.js' %}"></script>
 </body>
 </html>

@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrimeTech Foundation - Login</title>
+    <link rel="icon" type="image/png" href="{% static 'core/Photos/logo New.png' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/login.css' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/patnership.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'core/Photos/logo New.png' %}" alt="Primetech Foundation Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'courses' %}">Explore Courses</a></li>
+                    <li><a href="{% url 'patnership' %}">Partner with us</a></li>
+                    <li><a href="{% url 'contact' %}">Contact us</a></li>
+                    <li class="nav-item2">
+                        <a class="btn-login" href="{% url 'login' %}">Login/Sign up</a>
+                    </li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="login-container">
+        <div class="forms-container">
+            <div class="greeting">
+                <h1><strong>Welcome to PrimeTech Foundation</strong></h1>
+                <p>Sign up or log in to start your journey with us!</p>
+            </div>
+
+            <div class="form-container login-form {% if not signup_form %}active{% else %}hidden{% endif %}">
+                <h2>Login to Your Account</h2>
+                {% if form.errors %}
+                    <p class="text-danger">Invalid email or password. Please try again.</p>
+                {% endif %}
+                <form method="post" action="{% url 'login' %}" id="loginForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" name="username" value="{{ form.username.value|default_if_none:'' }}" required>
+                        <label for="loginEmail">Email</label>
+                        {{ form.username.errors }}
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" name="password" required>
+                        <label for="loginPassword">Password</label>
+                        <i class="fas fa-eye toggle-password" onclick="togglePassword('loginPassword', this)"></i>
+                        {{ form.password.errors }}
+                    </div>
+                    <div class="form-group" style="text-align:right; margin-bottom: 10px;">
+                        <a href="{% url 'password_reset' %}" class="forgot-password">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn">Login</button>
+                </form>
+                <p class="switch-form">Don't have an account? <a href="#" onclick="showSignup()">Sign up</a></p>
+            </div>
+
+            <div class="form-container signup-form {% if signup_form %}active{% else %}hidden{% endif %}">
+                <h2>Create Your Account</h2>
+                {% if signup_form.errors %}
+                    <p class="text-danger">Please correct the errors below.</p>
+                {% endif %}
+                <form method="post" action="{% url 'signup' %}" id="signupForm">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="fullName" name="full_name" value="{{ signup_form.full_name.value|default_if_none:'' }}" required>
+                        <label for="fullName">Full Name</label>
+                        {{ signup_form.full_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phoneNumber" name="phone_number" value="{{ signup_form.phone_number.value|default_if_none:'' }}" required>
+                        <label for="phoneNumber">Phone Number</label>
+                        {{ signup_form.phone_number.errors }}
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signupEmail" name="email" value="{{ signup_form.email.value|default_if_none:'' }}" required>
+                        <label for="signupEmail">Email</label>
+                        {{ signup_form.email.errors }}
+                    </div>
+                    <div class="form-group">
+                        <select id="gender" name="gender" required>
+                            <option value="" {% if not signup_form.gender.value %}selected{% endif %}>Select Gender</option>
+                            <option value="male" {% if signup_form.gender.value == 'male' %}selected{% endif %}>Male</option>
+                            <option value="female" {% if signup_form.gender.value == 'female' %}selected{% endif %}>Female</option>
+                            <option value="prefer-not-to-say" {% if signup_form.gender.value == 'prefer-not-to-say' %}selected{% endif %}>Prefer not to say</option>
+                        </select>
+                        <label for="gender">Gender</label>
+                        {{ signup_form.gender.errors }}
+                    </div>
+                    <div class="form-group">
+                        <select id="nationality" name="nationality" required>
+                            <option value="" {% if not signup_form.nationality.value %}selected{% endif %}>Select Nationality</option>
+                            <!-- Populated by login.js -->
+                        </select>
+                        <label for="nationality">Nationality</label>
+                        {{ signup_form.nationality.errors }}
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signupPassword" name="password1" required oninput="checkPasswordStrength()">
+                        <label for="signupPassword">Password</label>
+                        <span id="password-strength"></span>
+                        {{ signup_form.password1.errors }}
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" name="password2" required>
+                        <label for="confirmPassword">Confirm Password</label>
+                        {{ signup_form.password2.errors }}
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+                <p class="switch-form">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="verification-modal {% if show_verification %}active{% else %}hidden{% endif %}">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>Email Verification</h2>
+            <p>A verification link has been sent to your email address. Please check your inbox and click on the link to verify your account.</p>
+            <button class="btn" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <script src="{% static 'core/scripts/login.js' %}"></script>
+    <script src="{% static 'core/scripts/patnership.js' %}"></script>
+</body>
+</html>

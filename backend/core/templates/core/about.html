@@ -4,9 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About PrimeTech Foundation</title>
-    <link rel="stylesheet" href="styles/patnership.css">
-    <link rel="stylesheet" href="Styles/about.css">
-    <link rel="icon" type="image/png" href="Photos/logo New.png" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/styles/patnership.css' %}">
+    <link rel="stylesheet" href="{% static 'core/styles/about.css' %}">
+    <link rel="icon" type="image/png" href="{% static 'core/Photos/logo New.png' %}"/>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -21,17 +22,17 @@
     <header>
       <div class="container">
         <div class="logo">
-          <a href="#"><img src="Photos/logo New.png" alt="Primetech Foundation Logo" /></a>
+          <a href="#"><img src="{% static 'core/Photos/logo New.png' %}" alt="Primetech Foundation Logo" /></a>
         </div>
         <nav>
           <ul>
-            <li><a href="Index.html">Home</a></li>
-            <li><a href="about.html" class="active">About Us</a></li>
-            <li><a href="courses.html">Explore Courses</a></li>
-            <li><a href="patnership.html"> Partner with us</a></li>
-            <li><a href="contact.html">Contact us</a></li>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}" class="active">About Us</a></li>
+            <li><a href="{% url 'courses' %}">Explore Courses</a></li>
+            <li><a href="{% url 'patnership' %}"> Partner with us</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
             <li class="nav-item2">
-              <a class="btn-login" href="login.html">Login/Sign up</a>
+              <a class="btn-login" href="{% url 'login' %}">Login/Sign up</a>
             </li>
           </ul>
           <div class="mobile-menu-btn">
@@ -52,9 +53,9 @@
         <p>
           Through our programs, we empower young people to unlock their potential, build sustainable careers, and contribute to the growth of their communities. Our commitment is to create lasting impact by fostering innovation, mentorship, and access to technology for all.
         </p>
-        <a href="docs/PrimeTech Foundation Story.pdf" target="_blank" class="btn-read-more">Read More</a>
+        <a href="{% static 'core/docs/PrimeTech Foundation Story.pdf' %}" target="_blank" class="btn-read-more">Read More</a>
       </div>
-      <img src="Photos/about us.jpg" alt="Our Journey" class="story-image" />
+      <img src="{% static 'core/Photos/about us.jpg' %}" alt="Our Journey" class="story-image" />
     </div>
 
     <div class="mission-vision-container">
@@ -89,29 +90,29 @@
       <h1>Our Team</h1>
     </div>
 
-    <div class="team-container" data-aos="fade-up">
+    <div class="team-container" data-aos="fade-up"><a href="#"><img src="{% static 'core/Photos/logo New.png' %}" alt="Primetech Foundation Logo" /></a>
       <div class="team-member" data-aos="fade-up" data-aos-delay="100">
-        <img src="Photos/Ronald2.jpg" alt="Ronald Wandili-Founder" />
+        <img src="{% static 'core/Photos/Ronald2.jpg' %}" alt="Ronald Wandili-Founder" />
         <h2>Ronald Wandili</h2>
         <p>Founder & CEO</p>
       </div>
       <div class="team-member" data-aos="fade-up" data-aos-delay="200">
-        <img src="Photos/sharon.jpg" alt="Sharon Jepkemoi-Co-founder" />
+        <img src="{% static 'core/Photos/sharon.jpg' %}" alt="Sharon Jepkemoi-Co-founder" />
         <h2>Sharon Jepkemoi</h2>
         <p>Co-founder & Instructor</p>
       </div>
       <div class="team-member" data-aos="fade-up" data-aos-delay="300">
-        <img src="Photos/ian2.jpg" alt="Ian Githinji-Co-founder" />
+        <img src="{% static 'core/Photos/ian2.jpg' %}" alt="Ian Githinji-Co-founder" />
         <h2>Ian Githinji</h2>
         <p>Co-founder & Instructor</p>
       </div>
             <div class="team-member" data-aos="fade-up" data-aos-delay="300">
-        <img src="Photos/Margaret.jpg" alt="Margaret Akinyi" />
+        <img src="{% static 'core/Photos/Margaret.jpg' %}" alt="Margaret Akinyi" />
         <h2>Margaret Akinyi</h2>
         <p>Instructor</p>
       </div>
             <div class="team-member" data-aos="fade-up" data-aos-delay="300">
-        <img src="Photos/seth.jpg" alt="Seth Omondi Otieno-Intructor" />
+        <img src="{% static 'core/Photos/seth.jpg' %}" alt="Seth Omondi Otieno-Intructor" />
         <h2>Seth Omondi</h2>
         <p>Instructor</p>
       </div>
@@ -120,7 +121,7 @@
     <div class="contact-container" data-aos="fade-up">
       <h1>Contact Us</h1>
       <p>If you have any questions or would like to get involved, feel free to reach out!</p>
-      <a href="contact.html" class="btn btn-orange">Contact Us</a>
+      <a href="{% url 'contact' %}" class="btn btn-orange">Contact Us</a>
     </div>
 
     <footer>
@@ -133,10 +134,10 @@
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="Index.html">Home</a></li>
-                        <li><a href="patnership.html">Patner With Us</a></li>
-                        <li><a href="courses.html">Our Courses</a></li>
-                        <li><a href="login.html">Join us Today</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'patnership' %}">Patner With Us</a></li>
+                        <li><a href="{% url 'courses' %}">Our Courses</a></li>
+                        <li><a href="{% url 'login' %}">Join us Today</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -168,7 +169,7 @@
     <button id="backToTop" title="Go to top">&#8679;</button>
 
     <!--scripts-->
-    <script src="scripts/patnership.js"></script>
+    <script src="{% static 'core/scripts/patnership.js' %}"></script>
     <script>
       window.onscroll = function () {
         document.getElementById("backToTop").style.display =
