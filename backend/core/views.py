@@ -11,17 +11,18 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.http import HttpResponse
+from django.conf import settings
 
 def home(request):
     return render(request, 'core/index.html')
 
 def dashboard(request):
     if not request.user.is_authenticated:
-        return redirect('login') #ensure login
-    return render(request, 'core/dashboard.html')  # Create this template later
+        return redirect('login')  # Ensure login
+    return render(request, 'core/dashboard.html')  # Create this redirect template later
 
 def about(request):
-    return render(request, 'core/about.html')  # Add about.html to templates/core/
+    return render(request, 'core/about.html') 
 
 def courses(request):
     return render(request, 'core/courses.html')
@@ -45,7 +46,7 @@ def verify_email(request, uidb64, token):
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         return redirect('dashboard')
     return HttpResponse('Invalid verification link.')
-    
+
 class CustomUserCreationForm(UserCreationForm):
     full_name = forms.CharField(max_length=100, required=True)
     phone_number = forms.CharField(max_length=15, required=True)
@@ -60,6 +61,12 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['email', 'full_name', 'phone_number', 'gender', 'nationality', 'password1', 'password2']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if CustomUser.objects.filter(email=email).exists():
+            raise forms.ValidationError("This email address is already in use.")
+        return email
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -88,7 +95,7 @@ def signup(request):
             send_mail(
                 subject='Verify Your Email - PrimeTech Foundation',
                 message=f'Click the link to verify your email: {verification_url}',
-                from_email='your_email@example.com',
+                from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[user.email],
                 fail_silently=False,
             )

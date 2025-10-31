@@ -90,7 +90,7 @@
                     </div>
                     <div class="form-group">
                         <select id="gender" name="gender" required>
-                            <option value="" {% if not signup_form.gender.value %}selected{% endif %}>Select Gender</option>
+                            <option value="" {% if not signup_form.gender.value %}selected{% endif %}></option>
                             <option value="male" {% if signup_form.gender.value == 'male' %}selected{% endif %}>Male</option>
                             <option value="female" {% if signup_form.gender.value == 'female' %}selected{% endif %}>Female</option>
                             <option value="prefer-not-to-say" {% if signup_form.gender.value == 'prefer-not-to-say' %}selected{% endif %}>Prefer not to say</option>
@@ -100,7 +100,7 @@
                     </div>
                     <div class="form-group">
                         <select id="nationality" name="nationality" required>
-                            <option value="" {% if not signup_form.nationality.value %}selected{% endif %}>Select Nationality</option>
+                            <option value="" {% if not signup_form.nationality.value %}selected{% endif %}></option>
                             <!-- Populated by login.js -->
                         </select>
                         <label for="nationality">Nationality</label>
